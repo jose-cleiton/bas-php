@@ -1,0 +1,30 @@
+version: "3"
+services:
+  web:
+    image: php:8.0-cli
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+    environment:
+      DB_ROOT: ${DB_ROOT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PAS: ${DB_PAS}
+    working_dir: /var/www/html
+    command: php -S 0.0.0.0:8000
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PAS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+   
