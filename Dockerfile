@@ -11,3 +11,6 @@ RUN a2enmod rewrite
 
 # Define a porta exposta pelo contêiner
 EXPOSE 8080
+
+# Define o usuário e grupo do Apache
+RUN chown -R www-data:www-data /var/www/html/

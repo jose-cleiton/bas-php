@@ -3,7 +3,7 @@ services:
   web:
     image: php:8.0-cli
     volumes:
-      - ./src:/var/www/html
+      - .:/var/www/html
     ports:
       - "8080:8000"
     depends_on:
