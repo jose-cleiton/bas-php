@@ -6,6 +6,10 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Copia os arquivos do aplicativo para o contêiner
 COPY . /var/www/html/
 
+# Instala outras extensões PHP, se necessário
+RUN docker-php-ext-install gd
+
+
 # Habilita mod_rewrite do Apache
 RUN a2enmod rewrite
 
